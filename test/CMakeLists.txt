@@ -1,6 +1,6 @@
 find_package(Threads)
 
-add_executable(module-tests
+add_executable(oatpp-openssl-tests
         oatpp-openssl/tests.cpp
         oatpp-openssl/FullTest.cpp
         oatpp-openssl/FullTest.hpp
@@ -25,27 +25,27 @@ add_definitions(
 
 #################################################################
 
-set_target_properties(module-tests PROPERTIES
+set_target_properties(oatpp-openssl-tests PROPERTIES
         CXX_STANDARD 11
         CXX_EXTENSIONS OFF
         CXX_STANDARD_REQUIRED ON
 )
 
-target_include_directories(module-tests
+target_include_directories(oatpp-openssl-tests
         PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 if(OATPP_MODULES_LOCATION STREQUAL OATPP_MODULES_LOCATION_EXTERNAL)
-    add_dependencies(module-tests ${LIB_OATPP_EXTERNAL})
+    add_dependencies(oatpp-openssl-tests ${LIB_OATPP_EXTERNAL})
 endif()
 
-add_dependencies(module-tests ${OATPP_THIS_MODULE_NAME})
+add_dependencies(oatpp-openssl-tests ${OATPP_THIS_MODULE_NAME})
 
-target_link_oatpp(module-tests)
+target_link_oatpp(oatpp-openssl-tests)
 
-target_link_libraries(module-tests
+target_link_libraries(oatpp-openssl-tests
         PRIVATE ${OATPP_THIS_MODULE_NAME}
         PRIVATE Threads::Threads
 )
 
-add_test(module-tests module-tests)
+add_test(oatpp-openssl-tests oatpp-openssl-tests)

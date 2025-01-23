@@ -22,16 +22,18 @@
 ##
 ######################################################################################
 
-message("\n############################################################################")
-message("## oatpp-module-install.cmake\n")
+if(OATPP_WITH_VERBOSE_MESSAGE)
+        message("\n############################################################################")
+        message("## oatpp-module-install.cmake\n")
 
-message("OATPP_THIS_MODULE_NAME=${OATPP_THIS_MODULE_NAME}")
-message("OATPP_THIS_MODULE_VERSION=${OATPP_THIS_MODULE_VERSION}")
-message("OATPP_THIS_MODULE_LIBRARIES=${OATPP_THIS_MODULE_LIBRARIES}")
-message("OATPP_THIS_MODULE_TARGETS=${OATPP_THIS_MODULE_TARGETS}")
-message("OATPP_THIS_MODULE_DIRECTORIES=${OATPP_THIS_MODULE_DIRECTORIES}")
+        message("OATPP_THIS_MODULE_NAME=${OATPP_THIS_MODULE_NAME}")
+        message("OATPP_THIS_MODULE_VERSION=${OATPP_THIS_MODULE_VERSION}")
+        message("OATPP_THIS_MODULE_LIBRARIES=${OATPP_THIS_MODULE_LIBRARIES}")
+        message("OATPP_THIS_MODULE_TARGETS=${OATPP_THIS_MODULE_TARGETS}")
+        message("OATPP_THIS_MODULE_DIRECTORIES=${OATPP_THIS_MODULE_DIRECTORIES}")
 
-message("\n############################################################################\n")
+        message("\n############################################################################\n")
+endif()
 
 #######################################################################################
 ## Set cache variables to configure module-config.cmake.in template
@@ -58,7 +60,7 @@ endforeach()
 #######################################################################################
 
 install(TARGETS ${OATPP_THIS_MODULE_TARGETS}
-        EXPORT "${OATPP_MODULE_NAME}Targets"
+        #EXPORT "${OATPP_MODULE_NAME}Targets"
         ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}/oatpp-${OATPP_MODULE_VERSION}"
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}/oatpp-${OATPP_MODULE_VERSION}"
         RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}/oatpp-${OATPP_MODULE_VERSION}"
@@ -70,11 +72,11 @@ install(DIRECTORY ${OATPP_DIRS_TO_INSTALL}
         FILES_MATCHING PATTERN "*.hpp"
 )
 
-install(EXPORT "${OATPP_MODULE_NAME}Targets"
-        FILE "${OATPP_MODULE_NAME}Targets.cmake"
-        NAMESPACE oatpp::
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${OATPP_MODULE_NAME}-${OATPP_MODULE_VERSION}"
-)
+#install(EXPORT "${OATPP_MODULE_NAME}Targets"
+#        FILE "${OATPP_MODULE_NAME}Targets.cmake"
+#        NAMESPACE oatpp::
+#        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${OATPP_MODULE_NAME}-${OATPP_MODULE_VERSION}"
+#)
 
 include(CMakePackageConfigHelpers)
 
@@ -98,10 +100,10 @@ configure_package_config_file(
         NO_CHECK_REQUIRED_COMPONENTS_MACRO
 )
 
-install(
-        FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/${OATPP_MODULE_NAME}Config.cmake"
-            "${CMAKE_CURRENT_BINARY_DIR}/${OATPP_MODULE_NAME}ConfigVersion.cmake"
-        DESTINATION
-            "${CMAKE_INSTALL_LIBDIR}/cmake/${OATPP_MODULE_NAME}-${OATPP_MODULE_VERSION}"
-)
+#install(
+#        FILES
+#            "${CMAKE_CURRENT_BINARY_DIR}/${OATPP_MODULE_NAME}Config.cmake"
+#            "${CMAKE_CURRENT_BINARY_DIR}/${OATPP_MODULE_NAME}ConfigVersion.cmake"
+#        DESTINATION
+#            "${CMAKE_INSTALL_LIBDIR}/cmake/${OATPP_MODULE_NAME}-${OATPP_MODULE_VERSION}"
+#)
