@@ -51,6 +51,10 @@ target_include_directories(${OATPP_THIS_MODULE_NAME}
         PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 
+target_include_directories(${OATPP_THIS_MODULE_NAME}
+        PUBLIC ${OPENSSL_INCLUDE_DIR}
+)
+
 target_link_libraries(${OATPP_THIS_MODULE_NAME}
         PUBLIC OpenSSL::SSL
         PUBLIC OpenSSL::Crypto
